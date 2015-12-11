@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "A test project for CrossOver application process",
-  "repository": "",
+  "repository": "https://github.com/gund/crossover-project",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.3.1",
