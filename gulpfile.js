@@ -9,16 +9,16 @@ var gulp = require('gulp')
     , compass = require('gulp-compass');
 
 gulp.task('compass', function () {
-    gulp.src('./app/**/*.scss')
+    gulp.src('./src/**/*.scss')
         .pipe(compass({
             config_file: './config.rb',
-            css: 'app/stylesheets',
-            sass: 'app'
+            css: 'src/stylesheets',
+            sass: 'src'
         }))
         .pipe(minifyCss({processImport: false}))
         .on('error', notify.onError(function (error) {
             return error.message;
         }))
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('./app/stylesheets/'));
+        .pipe(gulp.dest('./src/stylesheets/'));
 });

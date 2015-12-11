@@ -1,33 +1,77 @@
-module.exports = function(config){
-  config.set({
+module.exports = function (config) {
 
-    basePath : './',
+    var testOut = process.argv.indexOf('--output') !== -1;
+    var withCoverage = process.argv.indexOf('--with-coverage') !== -1;
 
-    files : [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/components/**/*.js',
-      'app/view*/**/*.js'
-    ],
+    var configuration = {
 
-    autoWatch : true,
+        basePath: './',
 
-    frameworks: ['jasmine'],
+        files: [
+            'app/bower_components/angular/angular.js',
+            'app/bower_components/angular-route/angular-route.js',
+            'app/bower_components/angular-mocks/angular-mocks.js',
+            'app/modules/**/*.js',
+            'test/**/*.js'
+        ],
 
-    browsers : ['Chrome'],
+        exclude: [],
 
-    plugins : [
+        preprocessors: {
+            'app/modules/**/*.js': ['coverage']
+        },
+
+        autoWatch: true,
+
+        frameworks: ['jasmine'],
+
+        browsers: ['Chrome'],
+
+        plugins: [
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
+            'karma-coverage',
             'karma-junit-reporter'
-            ],
+        ],
 
-    junitReporter : {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
+        reporters: ['progress'],
+
+        junitReporter: {
+            outputFile: 'test_out/unit.xml',
+            suite: 'unit'
+        },
+
+        coverageReporter: {
+            reporters: [
+                {type: 'lcov', dir: 'coverage/', subdir: '.'},
+                {type: 'json', dir: 'coverage/', subdir: '.'},
+                {type: 'text-summary'}
+            ]
+        },
+
+        // browser for travis-ci
+        customLaunchers: {
+            Chrome_travis_ci: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
+            }
+        },
+
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: false,
+        browserNoActivityTimeout: 100000
+
+    };
+
+    if (testOut) configuration.reporters.push('junit');
+    if (withCoverage) configuration.reporters.push('coverage');
+
+    /** @name process.env.TRAVIS */
+    if (process.env.TRAVIS) {
+        configuration.browsers = ['Chrome_travis_ci'];
     }
 
-  });
+    config.set(configuration);
 };

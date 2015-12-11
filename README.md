@@ -78,9 +78,29 @@ check that a particular version of the code is operating as expected.  The proje
 predefined script to do this:
 
 ```
-npm run test-single-run
+npm run test:single
 ```
 
+
+### Testing with coverage
+
+You can run unit tests with coverage reports to *coverage* directory:
+
+```
+npm run test:coverage
+```
+
+This will generate coverage report in lcov, json and html formats.  
+You can easily configure coverage reporting to be uploaded to, for ex.,
+Coveralls.io where you can track coverage statistic.
+
+### Testing with output
+
+You can run unit tests with output to *test_out* directory:
+
+```
+npm run test:output
+```
 
 ### End to end testing
 

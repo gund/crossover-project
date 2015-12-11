@@ -2,6 +2,7 @@
 app/bower_components
 ### OSX template
 .DS_Store
+/test_out
 .AppleDouble
 .LSOverride
 
