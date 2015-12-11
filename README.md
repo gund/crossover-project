@@ -1,6 +1,9 @@
 # crossover-project — Demo project for crossover application process
+[![Build Status](https://travis-ci.org/gund/crossover-project.svg?branch=master)](https://travis-ci.org/gund/crossover-project)
 
-Please follow next sections to get started
+Demo project for crossover application process.
+
+Please follow next sections to get started.
 
 
 ## Getting Started
