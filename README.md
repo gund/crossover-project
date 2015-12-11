@@ -85,6 +85,15 @@ npm run test:single
 ```
 
 
+### Testing with output
+
+You can run unit tests with output to *test_out* directory:
+
+```
+npm run test:output
+```
+
+
 ### Testing with coverage
 
 You can run unit tests with coverage reports to *coverage* directory:
@@ -97,13 +106,21 @@ This will generate coverage report in lcov, json and html formats.
 You can easily configure coverage reporting to be uploaded to, for ex.,
 Coveralls.io where you can track coverage statistic.
 
-### Testing with output
 
-You can run unit tests with output to *test_out* directory:
+### Coverage reporting
+
+If you want to send coverage reports to Coveralls.io you have to set
+environment variable COVERALLS_REPO_TOKEN before.
+
+After you did it you can run:
 
 ```
-npm run test:output
+npm run test:report
 ```
+
+Also you can uncomment *after_success* section in *.travis.yml*
+to enable coverage uploading from CI server after successful builds.
+
 
 ### End to end testing
 

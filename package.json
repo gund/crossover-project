@@ -27,17 +27,17 @@
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1",
+    "start": "./node_modules/.bin/http-server -a localhost -p 8000 -c-1",
     "pretest": "npm install",
-    "test": "karma start karma.conf.js",
-    "test:single": "karma start karma.conf.js --single-run",
-    "test:output": "karma start karma.conf.js --single-run --output",
-    "test:coverage": "karma start karma.conf.js --single-run --with-coverage",
+    "test": "./node_modules/.bin/karma start karma.conf.js",
+    "test:single": "./node_modules/.bin/karma start karma.conf.js --single-run",
+    "test:output": "./node_modules/.bin/karma start karma.conf.js --single-run --output",
+    "test:coverage": "./node_modules/.bin/karma start karma.conf.js --single-run --with-coverage",
     "test:report": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js -v",
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
-    "protractor": "protractor e2e-tests/protractor.conf.js",
+    "protractor": "node_modules/.bin/protractor e2e-tests/protractor.conf.js",
     "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + sed(/sourceMappingURL=angular-loader.min.js.map/,'sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map','app/bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\""
   }
 }
