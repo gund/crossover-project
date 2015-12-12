@@ -1,0 +1,49 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}.flaticon-check31:before {
+	content: "\e000";
+}
+.flaticon-checked21:before {
+	content: "\e001";
+}
+.flaticon-chronometer19:before {
+	content: "\e002";
+}
+.flaticon-circle134:before {
+	content: "\e003";
+}
+.flaticon-clock96:before {
+	content: "\e004";
+}
+.flaticon-delete21:before {
+	content: "\e005";
+}
+.flaticon-exclamation9:before {
+	content: "\e006";
+}
+.flaticon-more7:before {
+	content: "\e007";
+}
+.flaticon-record:before {
+	content: "\e008";
+}
+.flaticon-refresh36:before {
+	content: "\e009";
+}
+.flaticon-symbol53:before {
+	content: "\e00a";
+}

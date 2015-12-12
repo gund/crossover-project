@@ -17,19 +17,19 @@ var BUILD_JS_FILES = [
     'app/modules/**/*.js'
 ];
 var BUILD_CSS_PATH = './app/stylesheets/';
-var BUILD_CSS_FILES = './app/**/*.scss';
+var BUILD_CSS_FILES = './app/sass/**/*.scss';
 
 gulp.task('compass', function () {
     gulp.src(BUILD_CSS_FILES)
         .pipe(compass({
             config_file: './config.rb',
             css: BUILD_CSS_PATH,
-            sass: 'app'
+            sass: 'app/sass'
         }))
-        .pipe(minifyCss({processImport: false}))
         .on('error', notify.onError(function (error) {
             return error.message;
         }))
+        .pipe(minifyCss({processImport: false}))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(BUILD_CSS_PATH))
         .pipe(notify({message: 'Styles compiled'}));

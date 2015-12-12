@@ -1,0 +1,21 @@
+@import "../font/flaticon/flaticon.css";
+// Include Susy
+@import "../bower_components/susy/sass/susy";
+
+// Configure global susy settings
+$susy: (
+        columns: 12, // The number of columns in your grid
+        gutters: 1/4, // The size of a gutter in relation to a single column
+        container: 1200px,
+        gutter-position: inside,
+        debug: (
+                image: show,
+                color: blue,
+                output: overlay,
+                toggle: top right,
+        )
+);
+
+body {
+  @include container();
+}
