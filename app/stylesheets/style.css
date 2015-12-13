@@ -1,49 +1,285 @@
 @import url(../font/flaticon/flaticon.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import url(../bower_components/animate.css/animate.min.css);
 body {
-  max-width: 1200px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-size: 0.875rem;
 }
 body:after {
   content: " ";
   display: block;
   clear: both;
 }
-head {
-  display: block;
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  z-index: 999;
-  color: #333;
-  background: rgba(255, 255, 255, 0.25);
+
+.main-view {
+  width: 100%;
+  border: 2px solid #e3e3e6;
+  border-bottom: none;
 }
-head:before {
-  content: "|||";
-  display: block;
-  padding: 5px 10px;
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-}
-head:hover {
-  background: rgba(255, 255, 255, 0.5);
-  color: red;
-}
-head:hover ~ body, head:hover ~ body body {
+.main-view .row {
+  box-sizing: border-box;
+  width: 100%;
+  float: left;
   position: relative;
+  padding-left: 5%;
+  height: 63px;
+  border-bottom: 1px solid #e3e3e6;
 }
-head:hover ~ body:before, head:hover ~ body body:before {
+.main-view .row:before {
+  content: '';
   position: absolute;
   top: 0;
-  left: 0;
   bottom: 0;
-  right: 0;
-  content: " ";
-  z-index: 998;
-  background-image: linear-gradient(to right, blue, #4d4dff);
-  background-size: 8.33333%;
-  background-origin: content-box;
-  background-clip: content-box;
-  background-position: left top;
+  left: 0;
+  width: 7px;
+  background: #d2d2d2;
+}
+.main-view .row.pending:before {
+  background-color: #f8ac59;
+}
+.main-view .row.pending .build .state-point, .main-view .row.pending .u-test .state-point, .main-view .row.pending .f-test .state-point {
+  background-color: #f8ac59;
+}
+.main-view .row.pending .build .state-point i, .main-view .row.pending .u-test .state-point i, .main-view .row.pending .f-test .state-point i {
+  text-shadow: none;
+}
+.main-view .row.pending .build .state-point .progress-line div, .main-view .row.pending .u-test .state-point .progress-line div, .main-view .row.pending .f-test .state-point .progress-line div {
+  background-color: #f8ac59;
+}
+.main-view .row.pending .status {
+  color: #f8ac59;
+}
+.main-view .row.running:before {
+  background-color: #1c84c6;
+}
+.main-view .row.running .build .state-point, .main-view .row.running .u-test .state-point, .main-view .row.running .f-test .state-point {
+  background-color: #1c84c6;
+}
+.main-view .row.running .build .state-point .progress-line div, .main-view .row.running .u-test .state-point .progress-line div, .main-view .row.running .f-test .state-point .progress-line div {
+  background-color: #1c84c6;
+}
+.main-view .row.running .status {
+  color: #1c84c6;
+}
+.main-view .row.passed:before {
+  background-color: #1ab394;
+}
+.main-view .row.passed .build .state-point, .main-view .row.passed .u-test .state-point, .main-view .row.passed .f-test .state-point {
+  background-color: #1ab394;
+}
+.main-view .row.passed .build .state-point .progress-line div, .main-view .row.passed .u-test .state-point .progress-line div, .main-view .row.passed .f-test .state-point .progress-line div {
+  background-color: #1ab394;
+}
+.main-view .row.passed .status {
+  color: #1ab394;
+}
+.main-view .row.failed:before {
+  background-color: #ed5565;
+}
+.main-view .row.failed .build .state-point, .main-view .row.failed .u-test .state-point, .main-view .row.failed .f-test .state-point {
+  background-color: #ed5565;
+}
+.main-view .row.failed .build .state-point .progress-line div, .main-view .row.failed .u-test .state-point .progress-line div, .main-view .row.failed .f-test .state-point .progress-line div {
+  background-color: #ed5565;
+}
+.main-view .row.failed .status {
+  color: #ed5565;
+}
+.main-view .row.header {
+  font-weight: 600;
+  line-height: 14px;
+  height: 47px;
+  cursor: default;
+}
+.main-view .row.header .col {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  color: #454545;
+  font-size: 12px;
+  font-size: 0.75rem;
+}
+.main-view .row.data {
+  cursor: pointer;
+}
+.main-view .row.data.ng-enter {
+  -webkit-animation: fadeIn 0.2s ease-in;
+  animation: fadeIn 0.2s ease-in;
+}
+.main-view .col {
+  box-sizing: border-box;
+  width: 14.28571%;
+  float: left;
+  padding-left: 0.71429%;
+  padding-right: 0.71429%;
+  padding-top: 24px;
+  padding-bottom: 23px;
+  color: #878787;
+  font-size: 11px;
+  font-size: 0.6875rem;
+}
+.main-view .col.changelist {
+  font-weight: 600;
+}
+.main-view .col.owner {
+  box-sizing: border-box;
+  width: 10.71429%;
+  float: left;
+  padding-left: 0.71429%;
+  padding-right: 0.71429%;
+}
+.main-view .col.time {
+  box-sizing: border-box;
+  width: 17.85714%;
+  float: left;
+  padding-left: 0.71429%;
+  padding-right: 0.71429%;
+}
+.main-view .col.time i {
+  display: inline-block;
+  margin-left: 8px;
+}
+.main-view .col.time i:before {
+  display: block;
+  margin: 0;
+  font-size: 10px;
+  font-size: 0.625rem;
+}
+.main-view .col.build, .main-view .col.u-test, .main-view .col.f-test {
+  position: relative;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  text-align: center;
+}
+.main-view .col.build .state-point, .main-view .col.u-test .state-point, .main-view .col.f-test .state-point {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 3px 0;
+  width: 37px;
+  height: 37px;
+  color: #fff;
+  background: #e4e4e7;
+  border: 5px solid #e4e4e7;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.main-view .col.build .state-point.empty, .main-view .col.u-test .state-point.empty, .main-view .col.f-test .state-point.empty {
+  background: #e4e4e7;
+}
+.main-view .col.build .state-point.empty i, .main-view .col.u-test .state-point.empty i, .main-view .col.f-test .state-point.empty i {
+  display: none;
+}
+.main-view .col.build .state-point.zero .progress-line div, .main-view .col.u-test .state-point.zero .progress-line div, .main-view .col.f-test .state-point.zero .progress-line div {
+  visibility: hidden;
+}
+.main-view .col.build .state-point.done .progress-line div, .main-view .col.u-test .state-point.done .progress-line div, .main-view .col.f-test .state-point.done .progress-line div {
+  border-radius: 0;
+}
+.main-view .col.build .state-point i, .main-view .col.u-test .state-point i, .main-view .col.f-test .state-point i {
+  display: inline-block;
+  vertical-align: middle;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1);
+}
+.main-view .col.build .state-point i:before, .main-view .col.u-test .state-point i:before, .main-view .col.f-test .state-point i:before {
+  display: block;
+  margin: 0;
+  font-size: 15px;
+}
+.main-view .col.build .state-point .progress-line, .main-view .col.u-test .state-point .progress-line, .main-view .col.f-test .state-point .progress-line {
+  position: absolute;
+  margin-top: -5px;
+  margin-left: 14px;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 28px);
+  height: 10px;
+  background: #e4e4e7;
+  z-index: 1;
+}
+.main-view .col.build .state-point .progress-line div, .main-view .col.u-test .state-point .progress-line div, .main-view .col.f-test .state-point .progress-line div {
+  margin-top: 3px;
+  margin-left: -1px;
+  width: 0;
+  height: 4px;
+  background: #e4e4e7 url("/app/images/bg-loader.png");
+  border-radius: 0 2px 2px 0;
+}
+.main-view .col.f-test .progress-line {
+  display: none;
+}
+.main-view .col.status {
+  font-size: 11px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+.main-view .col.status i {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1px;
+  height: 22px;
+}
+.main-view .col.status i:before {
+  display: block;
+  margin: 0;
+  font-size: 15px;
+  font-size: 0.9375rem;
+}
+@-webkit-keyframes rotatingAnimation {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  80% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotatingAnimation {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  80% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.main-view .running .status i:before, .main-view .running .build i:before, .main-view .running .u-test i:before, .main-view .running .f-test i:before {
+  -webkit-animation: rotatingAnimation 2s ease-in-out infinite;
+  animation: rotatingAnimation 2s ease-in-out infinite;
+}
+.main-view .loading {
+  box-sizing: border-box;
+  width: 85.71429%;
+  float: left;
+  padding-left: 0.71429%;
+  padding-right: 0.71429%;
+  padding: 50px 50px;
+  text-align: center;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  border-bottom: 1px solid #e3e3e6;
+}
+.main-view .loading.ng-leave {
+  -webkit-animation: fadeOut 0.2s ease-out;
+  animation: fadeOut 0.2s ease-out;
 }

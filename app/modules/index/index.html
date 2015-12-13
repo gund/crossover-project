@@ -1,0 +1,57 @@
+<!-- Main View table -->
+<div class="main-view">
+    <!-- Header row -->
+    <div class="row header">
+        <div class="col changelist">Changelist</div>
+        <div class="col owner">Owner</div>
+        <div class="col time">Time Started</div>
+        <div class="col build">Build</div>
+        <div class="col u-test">Unit Test</div>
+        <div class="col f-test">Functional Test</div>
+        <div class="col status">Status</div>
+    </div>
+    <!-- Header row END -->
+
+    <!-- Table content -->
+    <div class="row data {{ task.status }}" ng-repeat="task in taskList track by $index">
+        <div class="col changelist">{{ task.changelist }}</div>
+        <div class="col owner">{{ task.owner }}</div>
+        <div class="col time">
+            {{ task.start_time | date:"M / dd / yyyy" }}
+            <i class="flaticon-clock96"></i>
+            {{ task.start_time | date:"h:mm a" | lowercase }}
+        </div>
+        <div class="col build">
+            <div class="state-point" ng-class="{empty: isEmpty(task.build), done: isDone(task.build), zero: isZero(task.build)}">
+                <i class="{{ getIconFor(task.status, task.build) }}"></i>
+                <div class="progress-line">
+                    <div ng-attr-style="width: {{ getTaskPercent(task.build) }}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col u-test">
+            <div class="state-point" ng-class="{empty: isEmpty(task.unit_test), done: isDone(task.unit_test), zero: isZero(task.unit_test)}">
+                <i class="{{ getIconFor(task.status, task.unit_test) }}"></i>
+                <div class="progress-line">
+                    <div ng-attr-style="width: {{ getTaskPercent(task.unit_test) }}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col f-test">
+            <div class="state-point" ng-class="{empty: isEmpty(task.func_test), done: isDone(task.func_test), zero: isZero(task.func_test)}">
+                <i class="{{ getIconFor(task.status, task.func_test) }}"></i>
+                <div class="progress-line">
+                    <div ng-attr-style="width: {{ getTaskPercent(task.func_test) }}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col status">
+            <i class="{{ getIconFor(task.status) }}"></i>
+            {{ task.status | capitalize }}
+        </div>
+    </div>
+    <!-- Table content END -->
+
+    <div ng-if="isLoading" class="loading">Loading...</div>
+</div>
+<!-- Main View table END -->

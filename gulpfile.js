@@ -9,6 +9,7 @@ var gulp = require('gulp')
     , uglify = require('gulp-uglify')
     , minifyCss = require('gulp-minify-css')
     , notify = require("gulp-notify")
+    , autoprefixer = require('gulp-autoprefixer')
     , compass = require('gulp-compass');
 
 var BUILD_JS_PATH = './app/js/';
@@ -29,6 +30,11 @@ gulp.task('compass', function () {
         .on('error', notify.onError(function (error) {
             return error.message;
         }))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions', 'IE > 10'],
+            cascade: false
+        }))
+        .pipe(gulp.dest(BUILD_CSS_PATH))
         .pipe(minifyCss({processImport: false}))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(BUILD_CSS_PATH))

@@ -1,21 +1,304 @@
 @import "../font/flaticon/flaticon.css";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import "../bower_components/animate.css/animate.min.css";
+@import "mixins";
 // Include Susy
+@import "compass/css3";
 @import "../bower_components/susy/sass/susy";
 
 // Configure global susy settings
 $susy: (
-        columns: 12, // The number of columns in your grid
+        columns: 14, // The number of columns in your grid
         gutters: 1/4, // The size of a gutter in relation to a single column
-        container: 1200px,
+        container: 100%,
         gutter-position: inside,
         debug: (
-                image: show,
+                image: hide,
                 color: blue,
                 output: overlay,
                 toggle: top right,
         )
 );
 
+// Global font
+$fontLine: "Open Sans", sans-serif;
+
+// Global styles
+
 body {
   @include container();
+
+  font-family: $fontLine;
+  @include font-size(14px);
+}
+
+//[ui-view] {
+//  @include span(14 no-gutters);
+//}
+
+// Index view
+
+.main-view {
+  $borderColor: #e3e3e6;
+  $rowHeight: 63px;
+  $rowHeadHeight: 47px;
+
+  $statusWidth: 7px;
+  $statusColorDefault: #d2d2d2;
+  $statusSettings: (
+          pending: #f8ac59,
+          running: #1c84c6,
+          passed: #1ab394,
+          failed: #ed5565
+  );
+  $statePointColor: #e4e4e7;
+
+  @mixin rowStatusColor($status, $color: $statusColorDefault) {
+    &.#{$status} {
+      &:before {
+        background-color: $color;
+      }
+
+      .build, .u-test, .f-test {
+        .state-point {
+          background-color: $color;
+
+          @if $status == pending {
+            i {
+              text-shadow: none;
+            }
+          }
+
+          .progress-line {
+            div {
+              background-color: $color;
+            }
+          }
+        }
+      }
+
+      .status {
+        color: $color;
+      }
+    }
+  }
+
+  //display: table;
+  width: 100%;
+  border: 2px solid $borderColor;
+  border-bottom: none;
+
+  .row {
+    @include span(14 no-gutters);
+    position: relative;
+    //display: table-row;
+    padding-left: 5%; // $statusWidth;
+    height: $rowHeight;
+    border-bottom: 1px solid $borderColor;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: $statusWidth;
+      background: $statusColorDefault;
+    }
+
+    @each $name, $color in $statusSettings {
+      @include rowStatusColor($name, $color);
+    }
+
+    &.header {
+      font-weight: 600;
+      line-height: 14px;
+      height: $rowHeadHeight;
+      cursor: default;
+
+      .col {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        color: #454545;
+        @include font-size(12px);
+      }
+    }
+
+    &.data {
+      cursor: pointer;
+
+      &.ng-enter {
+        animation: fadeIn 0.2s ease-in;
+      }
+    }
+  }
+
+  .col {
+    @include span(2);
+    padding-top: 24px;
+    padding-bottom: 23px;
+    color: #878787;
+    @include font-size(11px);
+
+    &.changelist {
+      font-weight: 600;
+    }
+
+    &.owner {
+      @include span(1.5);
+    }
+
+    &.time {
+      @include span(2.5);
+
+      i {
+        display: inline-block;
+        margin-left: 8px;
+
+        &:before {
+          display: block;
+          margin: 0;
+          @include font-size(10px);
+        }
+      }
+    }
+
+    &.build, &.u-test, &.f-test {
+      position: relative;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      text-align: center;
+
+      .state-point {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 3px 0;
+        width: 37px;
+        height: 37px;
+        color: #fff;
+        background: $statePointColor;
+        border: 5px solid $statePointColor;
+        border-radius: 50%;
+        box-sizing: border-box;
+
+        &.empty {
+          background: $statePointColor;
+
+          i {
+            display: none;
+          }
+        }
+
+        &.zero {
+          .progress-line {
+            div {
+              visibility: hidden;
+            }
+          }
+        }
+
+        &.done {
+          .progress-line {
+            div {
+              border-radius: 0;
+            }
+          }
+        }
+
+        i {
+          display: inline-block;
+          vertical-align: middle;
+          text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1);
+
+          &:before {
+            display: block;
+            margin: 0;
+            font-size: 15px;
+          }
+        }
+
+        .progress-line {
+          position: absolute;
+          margin-top: -5px;
+          margin-left: 14px;
+          top: 50%;
+          left: 50%;
+          width: calc(100% - 28px);
+          height: 10px;
+          background: $statePointColor;
+          z-index: 1;
+
+          div {
+            margin-top: 3px;
+            margin-left: -1px;
+            width: 0;
+            height: 4px;
+            background: $statePointColor url("/app/images/bg-loader.png");
+            border-radius: 0 2px 2px 0;
+          }
+        }
+      }
+    }
+
+    &.f-test {
+      .progress-line {
+        display: none;
+      }
+    }
+
+    &.status {
+      @include font-size(11px);
+      font-weight: 600;
+
+      i {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 1px;
+        height: 22px;
+
+        &:before {
+          display: block;
+          margin: 0;
+          @include font-size(15px);
+        }
+      }
+    }
+  }
+
+  @keyframes rotatingAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(0deg);
+    }
+    80% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .running {
+    .status, .build, .u-test, .f-test {
+      i {
+        &:before {
+          animation: rotatingAnimation 2s ease-in-out infinite;
+        }
+      }
+    }
+  }
+
+  .loading {
+    @include span(12);
+    padding: 50px 50px;
+    text-align: center;
+    @include font-size(15px);
+    border-bottom: 1px solid $borderColor;
+
+    &.ng-leave {
+      animation: fadeOut 0.2s ease-out;
+    }
+  }
 }

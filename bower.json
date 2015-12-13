@@ -7,10 +7,11 @@
   "private": true,
   "dependencies": {
     "angular": "~1.4.0",
-    "angular-route": "~1.4.0",
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
     "html5-boilerplate": "~5.2.0",
-    "susy": "~2.2.9"
+    "susy": "~2.2.9",
+    "angular-ui-router": "~0.2.15",
+    "animate.css": "~3.4.0"
   }
 }
