@@ -31,7 +31,7 @@ gulp.task('compass', function () {
             return error.message;
         }))
         .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'IE > 10'],
+            browsers: ['> 2%', 'last 2 versions', 'ie > 10'],
             cascade: false
         }))
         .pipe(gulp.dest(BUILD_CSS_PATH))

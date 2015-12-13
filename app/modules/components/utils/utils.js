@@ -16,4 +16,11 @@
             }
         })
 
+        .filter('secondsToDateTime', [function() {
+            return function(seconds) {
+                if (isNaN(parseInt(seconds))) throw 'secondsToDateTime: Invalid seconds';
+                return new Date(1970, 0, 1).setSeconds(seconds);
+            };
+        }])
+
 })(angular);

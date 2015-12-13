@@ -88,6 +88,10 @@ body {
   border: 2px solid $borderColor;
   border-bottom: none;
 
+  @include bp-small() {
+    text-align: center;
+  }
+
   .row {
     @include span(14 no-gutters);
     position: relative;
@@ -95,6 +99,10 @@ body {
     padding-left: 5%; // $statusWidth;
     height: $rowHeight;
     border-bottom: 1px solid $borderColor;
+
+    @include bp-small() {
+      padding-left: $statusWidth;
+    }
 
     &:before {
       content: '';
@@ -122,13 +130,23 @@ body {
         color: #454545;
         @include font-size(12px);
       }
+
+      @include bp-small() {
+        .build, .u-test, .f-test, .status {
+          display: none;
+        }
+      }
     }
 
     &.data {
       cursor: pointer;
 
+      @include bp-small() {
+        height: auto;
+      }
+
       &.ng-enter {
-        animation: fadeIn 0.2s ease-in;
+        animation: fadeInUp 0.2s ease-in;
       }
     }
   }
@@ -140,16 +158,29 @@ body {
     color: #878787;
     @include font-size(11px);
 
+    @include bp-small() {
+      @include span(4.6);
+    }
+
     &.changelist {
       font-weight: 600;
     }
 
     &.owner {
-      @include span(1.5);
+      @include bp-small-bigger() {
+        @include span(1.5);
+      }
     }
 
     &.time {
-      @include span(2.5);
+      @include bp-small-bigger() {
+        @include span(2.5);
+      }
+
+      .divider {
+        display: none;
+        margin-top: 3px;
+      }
 
       i {
         display: inline-block;
@@ -159,6 +190,16 @@ body {
           display: block;
           margin: 0;
           @include font-size(10px);
+        }
+      }
+
+      @include bp-small() {
+        .divider {
+          display: block;
+        }
+
+        i {
+          margin-left: 0;
         }
       }
     }
@@ -180,6 +221,7 @@ body {
         border: 5px solid $statePointColor;
         border-radius: 50%;
         box-sizing: border-box;
+        transition: all 0.15s 0.15s ease-out;
 
         &.empty {
           background: $statePointColor;
@@ -209,6 +251,7 @@ body {
           display: inline-block;
           vertical-align: middle;
           text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1);
+          animation: bounceIn 1.2s ease-in;
 
           &:before {
             display: block;
@@ -235,6 +278,7 @@ body {
             height: 4px;
             background: $statePointColor url("/app/images/bg-loader.png");
             border-radius: 0 2px 2px 0;
+            transition: all 0.15s ease-out;
           }
         }
       }
@@ -247,8 +291,14 @@ body {
     }
 
     &.status {
+      padding-top: 20px;
+      padding-bottom: 20px;
       @include font-size(11px);
       font-weight: 600;
+
+      @include bp-small() {
+        display: none;
+      }
 
       i {
         display: inline-block;

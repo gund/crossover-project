@@ -15,8 +15,7 @@
         }])
 
         .controller('IndexController', ['$scope', '$http', function ($scope, $http) {
-            var ctrl = this
-                , STATUS_PENDING = 'pending'
+            var STATUS_PENDING = 'pending'
                 , STATUS_RUNNING = 'running'
                 , STATUS_PASSED = 'passed'
                 , STATUS_FAILED = 'failed';
@@ -66,20 +65,16 @@
                 switch (status) {
                     case STATUS_PENDING:
                         return 'flaticon-more7';
-                        break;
                     case STATUS_RUNNING:
                         return 'flaticon-refresh36';
-                        break;
                     case STATUS_PASSED:
                         return percent ? 'flaticon-checked21' : 'flaticon-circle134';
-                        break;
                     case STATUS_FAILED:
                         if (percent) {
                             return percent == 100 ? 'flaticon-checked21' : 'flaticon-exclamation9';
                         } else {
                             return 'flaticon-delete21';
                         }
-                        break;
                 }
             };
 

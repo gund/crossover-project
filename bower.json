@@ -1,7 +1,7 @@
 {
   "name": "crossover-project",
   "description": "A test project for CrossOver application process",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "homepage": "https://github.com/gund/crossover-project",
   "license": "MIT",
   "private": true,

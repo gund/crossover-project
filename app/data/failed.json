@@ -1,0 +1,32 @@
+{
+  "changelist": "785852",
+  "owner": "JTuck",
+  "start_time": "1397713320000",
+  "status": "failed",
+  "build": "0",
+  "unit_test": "",
+  "func_test": "",
+  "details:": {
+    "build_time": "3:14 am",
+    "debug": "ok",
+    "release": "fail",
+    "debug_url": "https://github.com/gund/crossover-project",
+    "release_url": "https://github.com/gund/crossover-project/releases"
+  },
+  "tests": {
+    "unit": {
+      "status": "stopped",
+      "total_time": 258,
+      "total_coverage": 88,
+      "covered_stmt": 342,
+      "uncovered_stmt": 3
+    },
+    "func": {
+      "status": "stopped",
+      "total_time": 198,
+      "total_coverage": 98,
+      "covered_stmt": 14321,
+      "uncovered_stmt": 2000
+    }
+  }
+}

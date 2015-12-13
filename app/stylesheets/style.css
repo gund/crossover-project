@@ -20,6 +20,11 @@ body:after {
   border: 2px solid #e3e3e6;
   border-bottom: none;
 }
+@media only screen and (max-width: 768px) {
+  .main-view {
+    text-align: center;
+  }
+}
 .main-view .row {
   box-sizing: border-box;
   width: 100%;
@@ -28,6 +33,11 @@ body:after {
   padding-left: 5%;
   height: 63px;
   border-bottom: 1px solid #e3e3e6;
+}
+@media only screen and (max-width: 768px) {
+  .main-view .row {
+    padding-left: 7px;
+  }
 }
 .main-view .row:before {
   content: '';
@@ -102,12 +112,22 @@ body:after {
   font-size: 12px;
   font-size: 0.75rem;
 }
+@media only screen and (max-width: 768px) {
+  .main-view .row.header .build, .main-view .row.header .u-test, .main-view .row.header .f-test, .main-view .row.header .status {
+    display: none;
+  }
+}
 .main-view .row.data {
   cursor: pointer;
 }
+@media only screen and (max-width: 768px) {
+  .main-view .row.data {
+    height: auto;
+  }
+}
 .main-view .row.data.ng-enter {
-  -webkit-animation: fadeIn 0.2s ease-in;
-  animation: fadeIn 0.2s ease-in;
+  -webkit-animation: fadeInUp 0.2s ease-in;
+  animation: fadeInUp 0.2s ease-in;
 }
 .main-view .col {
   box-sizing: border-box;
@@ -121,22 +141,39 @@ body:after {
   font-size: 11px;
   font-size: 0.6875rem;
 }
+@media only screen and (max-width: 768px) {
+  .main-view .col {
+    box-sizing: border-box;
+    width: 32.85714%;
+    float: left;
+    padding-left: 0.71429%;
+    padding-right: 0.71429%;
+  }
+}
 .main-view .col.changelist {
   font-weight: 600;
 }
-.main-view .col.owner {
-  box-sizing: border-box;
-  width: 10.71429%;
-  float: left;
-  padding-left: 0.71429%;
-  padding-right: 0.71429%;
+@media only screen and (min-width: 769px) {
+  .main-view .col.owner {
+    box-sizing: border-box;
+    width: 10.71429%;
+    float: left;
+    padding-left: 0.71429%;
+    padding-right: 0.71429%;
+  }
 }
-.main-view .col.time {
-  box-sizing: border-box;
-  width: 17.85714%;
-  float: left;
-  padding-left: 0.71429%;
-  padding-right: 0.71429%;
+@media only screen and (min-width: 769px) {
+  .main-view .col.time {
+    box-sizing: border-box;
+    width: 17.85714%;
+    float: left;
+    padding-left: 0.71429%;
+    padding-right: 0.71429%;
+  }
+}
+.main-view .col.time .divider {
+  display: none;
+  margin-top: 3px;
 }
 .main-view .col.time i {
   display: inline-block;
@@ -147,6 +184,14 @@ body:after {
   margin: 0;
   font-size: 10px;
   font-size: 0.625rem;
+}
+@media only screen and (max-width: 768px) {
+  .main-view .col.time .divider {
+    display: block;
+  }
+  .main-view .col.time i {
+    margin-left: 0;
+  }
 }
 .main-view .col.build, .main-view .col.u-test, .main-view .col.f-test {
   position: relative;
@@ -165,6 +210,8 @@ body:after {
   border: 5px solid #e4e4e7;
   border-radius: 50%;
   box-sizing: border-box;
+  -webkit-transition: all 0.15s 0.15s ease-out;
+  transition: all 0.15s 0.15s ease-out;
 }
 .main-view .col.build .state-point.empty, .main-view .col.u-test .state-point.empty, .main-view .col.f-test .state-point.empty {
   background: #e4e4e7;
@@ -182,6 +229,8 @@ body:after {
   display: inline-block;
   vertical-align: middle;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-animation: bounceIn 1.2s ease-in;
+  animation: bounceIn 1.2s ease-in;
 }
 .main-view .col.build .state-point i:before, .main-view .col.u-test .state-point i:before, .main-view .col.f-test .state-point i:before {
   display: block;
@@ -206,14 +255,23 @@ body:after {
   height: 4px;
   background: #e4e4e7 url("/app/images/bg-loader.png");
   border-radius: 0 2px 2px 0;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
 }
 .main-view .col.f-test .progress-line {
   display: none;
 }
 .main-view .col.status {
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-size: 11px;
   font-size: 0.6875rem;
   font-weight: 600;
+}
+@media only screen and (max-width: 768px) {
+  .main-view .col.status {
+    display: none;
+  }
 }
 .main-view .col.status i {
   display: inline-block;
