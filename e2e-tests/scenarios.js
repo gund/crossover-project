@@ -6,7 +6,7 @@ describe('my app', function() {
 
 
   it('should automatically redirect to / when location hash/fragment is empty', function() {
-    browser.get('index.html');
+    browser.get('/');
     expect(browser.getLocationAbsUrl()).toMatch("/");
   });
 
@@ -14,7 +14,7 @@ describe('my app', function() {
   describe('index', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/');
+      browser.get('#/');
     });
 
 
