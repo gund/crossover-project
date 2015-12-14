@@ -14,36 +14,42 @@
         font-size: 20px;
 font-style: normal;
 margin-left: 20px;
-}.flaticon-check31:before {
+}.flaticon-cancel20:before {
 	content: "\e000";
 }
-.flaticon-checked21:before {
+.flaticon-check31:before {
 	content: "\e001";
 }
-.flaticon-chronometer19:before {
+.flaticon-checked21:before {
 	content: "\e002";
 }
-.flaticon-circle134:before {
+.flaticon-chronometer19:before {
 	content: "\e003";
 }
-.flaticon-clock96:before {
+.flaticon-circle134:before {
 	content: "\e004";
 }
-.flaticon-delete21:before {
+.flaticon-clock96:before {
 	content: "\e005";
 }
-.flaticon-exclamation9:before {
+.flaticon-delete21:before {
 	content: "\e006";
 }
-.flaticon-more7:before {
+.flaticon-exclamation9:before {
 	content: "\e007";
 }
-.flaticon-record:before {
+.flaticon-more7:before {
 	content: "\e008";
 }
-.flaticon-refresh36:before {
+.flaticon-record:before {
 	content: "\e009";
 }
-.flaticon-symbol53:before {
+.flaticon-refresh36:before {
 	content: "\e00a";
+}
+.flaticon-rounded56:before {
+	content: "\e00b";
+}
+.flaticon-symbol53:before {
+	content: "\e00c";
 }

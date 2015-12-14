@@ -33,7 +33,7 @@ describe('gundCI.index module', function () {
 
         it('should fetch data when init', function () {
             verifyHTTP = true;
-            $httpBackend.expectGET('data/tasks.json').respond(angular.toJson(MOCK_DATA));
+            $httpBackend.expectGET('/tasks').respond(angular.toJson(MOCK_DATA));
             indexCtrl();
             expect(scope.isLoading).toBeTruthy();
             $httpBackend.flush();

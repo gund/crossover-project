@@ -24,13 +24,12 @@
             $scope.taskList = [];
 
             $scope.loadTasks = function () {
-                return $http.get('data/tasks.json');
+                return $http.get('/tasks');
             };
 
-            $scope.loadTasks().then(function (data) {
-                $scope.isLoading = false;
-                $scope.taskList = data.data;
-            });
+            $scope.loadTaskInfo = function (taskId) {
+                return $http.get('/task/' + taskId);
+            };
 
             $scope.isPending = function (status) {
                 return status === STATUS_PENDING;
@@ -81,6 +80,39 @@
             $scope.getTaskPercent = function (percent) {
                 return 'calc(' + percent + '% + 2px)';
             };
+
+            $scope.toggleTask = function (task) {
+                var state = angular.isDefined(task.isOpened) ? !task.isOpened : true;
+
+                // Close another tasks if this is opened
+                if (state) {
+                    angular.forEach($scope.taskList, function (subTask) {
+                        subTask.isOpened = false;
+                    });
+                }
+
+                // Update current task
+                //if (state && !angular.isDefined(task.details)) {
+                //    task.isLoading = true;
+                //
+                //    $scope.loadTaskInfo(task.changelist).then(function (data) {
+                //        task.isLoading = false;
+                //        task.isOpened = state;
+                //        task.details = data.data;
+                //        console.log(task);
+                //    }, function () {
+                //        task.isLoading = false;
+                //        task.isOpened = false;
+                //    });
+                //} else
+                    task.isOpened = state;
+            };
+
+            $scope.loadTasks().then(function (data) {
+                $scope.isLoading = false;
+                $scope.taskList = data.data;
+                console.log($scope.taskList);
+            });
         }])
 
 })(angular);

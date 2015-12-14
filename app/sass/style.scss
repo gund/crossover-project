@@ -80,11 +80,18 @@ body {
       .status {
         color: $color;
       }
+
+      .additional {
+        .additional-build {
+          color: $color;
+        }
+      }
     }
   }
 
   //display: table;
-  width: 100%;
+  @include span(14 no-gutters);
+  background: #f7f7f7;
   border: 2px solid $borderColor;
   border-bottom: none;
 
@@ -98,7 +105,9 @@ body {
     //display: table-row;
     padding-left: 5%; // $statusWidth;
     height: $rowHeight;
+    background: #fff;
     border-bottom: 1px solid $borderColor;
+    overflow: hidden;
 
     @include bp-small() {
       padding-left: $statusWidth;
@@ -112,6 +121,7 @@ body {
       left: 0;
       width: $statusWidth;
       background: $statusColorDefault;
+      transition: all 0.15s ease-out;
     }
 
     @each $name, $color in $statusSettings {
@@ -141,6 +151,18 @@ body {
     &.data {
       cursor: pointer;
 
+      &.task_loading {
+        animation: flash 1.8s ease-in-out infinite;
+      }
+
+      &.task_opened {
+        height: auto;
+
+        &:before {
+          background: $statusColorDefault;
+        }
+      }
+
       @include bp-small() {
         height: auto;
       }
@@ -148,6 +170,14 @@ body {
       &.ng-enter {
         animation: fadeInUp 0.2s ease-in;
       }
+    }
+
+    .splitter {
+      display: block;
+      width: 105%;
+      border-bottom: 1px solid $borderColor;
+      float: left;
+      margin-left: -5%;
     }
   }
 
@@ -276,7 +306,7 @@ body {
             margin-left: -1px;
             width: 0;
             height: 4px;
-            background: $statePointColor url("/app/images/bg-loader.png");
+            background: $statePointColor url("/images/bg-loader.png");
             border-radius: 0 2px 2px 0;
             transition: all 0.15s ease-out;
           }
@@ -310,6 +340,67 @@ body {
           display: block;
           margin: 0;
           @include font-size(15px);
+        }
+      }
+    }
+
+    &.additional {
+      @include span(12 no-gutters);
+      margin-left: -2%;
+      padding-top: 22px;
+
+      @include bp-small() {
+        margin-left: 0;
+      }
+
+      .additional-build {
+        display: table-cell;
+        vertical-align: top;
+
+        .build-status {
+          font-size: 14px;
+
+          i {
+            &:before {
+              font-size: 14px;
+              margin-left: 3px;
+            }
+          }
+        }
+
+        .build-time {
+          font-size: 10px;
+
+          i {
+            &:before {
+              font-size: 10px;
+              margin-left: 0;
+            }
+          }
+        }
+      }
+
+      .build-type {
+        display: table-cell;
+        vertical-align: top;
+        padding-left: 30px;
+
+        .type-debug, .type-release {
+          display: inline-block;
+          vertical-align: middle;
+
+          .type-link {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 11px;
+            color: #63a1d2;
+            text-decoration: underline;
+          }
+        }
+
+        .type-debug {
+          margin-right: 25px;
         }
       }
     }

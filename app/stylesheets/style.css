@@ -16,7 +16,10 @@ body:after {
 }
 
 .main-view {
+  box-sizing: border-box;
   width: 100%;
+  float: left;
+  background: #f7f7f7;
   border: 2px solid #e3e3e6;
   border-bottom: none;
 }
@@ -32,7 +35,9 @@ body:after {
   position: relative;
   padding-left: 5%;
   height: 63px;
+  background: #fff;
   border-bottom: 1px solid #e3e3e6;
+  overflow: hidden;
 }
 @media only screen and (max-width: 768px) {
   .main-view .row {
@@ -47,6 +52,8 @@ body:after {
   left: 0;
   width: 7px;
   background: #d2d2d2;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
 }
 .main-view .row.pending:before {
   background-color: #f8ac59;
@@ -63,6 +70,9 @@ body:after {
 .main-view .row.pending .status {
   color: #f8ac59;
 }
+.main-view .row.pending .additional .additional-build {
+  color: #f8ac59;
+}
 .main-view .row.running:before {
   background-color: #1c84c6;
 }
@@ -73,6 +83,9 @@ body:after {
   background-color: #1c84c6;
 }
 .main-view .row.running .status {
+  color: #1c84c6;
+}
+.main-view .row.running .additional .additional-build {
   color: #1c84c6;
 }
 .main-view .row.passed:before {
@@ -87,6 +100,9 @@ body:after {
 .main-view .row.passed .status {
   color: #1ab394;
 }
+.main-view .row.passed .additional .additional-build {
+  color: #1ab394;
+}
 .main-view .row.failed:before {
   background-color: #ed5565;
 }
@@ -97,6 +113,9 @@ body:after {
   background-color: #ed5565;
 }
 .main-view .row.failed .status {
+  color: #ed5565;
+}
+.main-view .row.failed .additional .additional-build {
   color: #ed5565;
 }
 .main-view .row.header {
@@ -120,6 +139,16 @@ body:after {
 .main-view .row.data {
   cursor: pointer;
 }
+.main-view .row.data.task_loading {
+  -webkit-animation: flash 1.8s ease-in-out infinite;
+  animation: flash 1.8s ease-in-out infinite;
+}
+.main-view .row.data.task_opened {
+  height: auto;
+}
+.main-view .row.data.task_opened:before {
+  background: #d2d2d2;
+}
 @media only screen and (max-width: 768px) {
   .main-view .row.data {
     height: auto;
@@ -128,6 +157,13 @@ body:after {
 .main-view .row.data.ng-enter {
   -webkit-animation: fadeInUp 0.2s ease-in;
   animation: fadeInUp 0.2s ease-in;
+}
+.main-view .row .splitter {
+  display: block;
+  width: 105%;
+  border-bottom: 1px solid #e3e3e6;
+  float: left;
+  margin-left: -5%;
 }
 .main-view .col {
   box-sizing: border-box;
@@ -253,7 +289,7 @@ body:after {
   margin-left: -1px;
   width: 0;
   height: 4px;
-  background: #e4e4e7 url("/app/images/bg-loader.png");
+  background: #e4e4e7 url("/images/bg-loader.png");
   border-radius: 0 2px 2px 0;
   -webkit-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
@@ -284,6 +320,56 @@ body:after {
   margin: 0;
   font-size: 15px;
   font-size: 0.9375rem;
+}
+.main-view .col.additional {
+  box-sizing: border-box;
+  width: 85.71429%;
+  float: left;
+  margin-left: -2%;
+  padding-top: 22px;
+}
+@media only screen and (max-width: 768px) {
+  .main-view .col.additional {
+    margin-left: 0;
+  }
+}
+.main-view .col.additional .additional-build {
+  display: table-cell;
+  vertical-align: top;
+}
+.main-view .col.additional .additional-build .build-status {
+  font-size: 14px;
+}
+.main-view .col.additional .additional-build .build-status i:before {
+  font-size: 14px;
+  margin-left: 3px;
+}
+.main-view .col.additional .additional-build .build-time {
+  font-size: 10px;
+}
+.main-view .col.additional .additional-build .build-time i:before {
+  font-size: 10px;
+  margin-left: 0;
+}
+.main-view .col.additional .build-type {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 30px;
+}
+.main-view .col.additional .build-type .type-debug, .main-view .col.additional .build-type .type-release {
+  display: inline-block;
+  vertical-align: middle;
+}
+.main-view .col.additional .build-type .type-debug .type-link, .main-view .col.additional .build-type .type-release .type-link {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 11px;
+  color: #63a1d2;
+  text-decoration: underline;
+}
+.main-view .col.additional .build-type .type-debug {
+  margin-right: 25px;
 }
 @-webkit-keyframes rotatingAnimation {
   0% {
