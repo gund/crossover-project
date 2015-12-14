@@ -35,25 +35,8 @@ First run web server with next command:
 npm start
 ```
 
-Now browse to the app at `http://localhost:8000/app/index.html`.
+Now browse to the app at `http://localhost:8000/index.html`.
 
-
-
-## Directory Layout
-
-```
-app/                    --> all of the source files for the application
-  components/           --> all app specific modules
-  view1/                --> the view1 view template and logic
-  view2/                --> the view2 view template and logic
-  app.js                --> main application module
-  index.html            --> app layout file (the main html template file of the app)
-  index-async.html      --> just like index.html, but loads js files asynchronously
-karma.conf.js           --> config file for running unit tests with Karma
-e2e-tests/              --> end-to-end tests
-  protractor-conf.js    --> Protractor config file
-  scenarios.js          --> end-to-end scenarios to be run by Protractor
-```
 
 ## Testing
 

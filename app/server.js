@@ -3,11 +3,15 @@
  */
 
 var fs = require('fs');
+var path = require('path');
 var express = require("express");
+
+var appPath = path.dirname(process.mainModule.filename);
 
 var app = express();
 
-const taskListText = fs.readFileSync('./data/tasks.json');
+
+const taskListText = fs.readFileSync(appPath + '/data/tasks.json');
 const taskList = JSON.parse(taskListText);
 
 app.get('/tasks', function (req, res) {
@@ -29,6 +33,6 @@ app.get(/^\/task\/([0-9]+)$/, function (req, res) {
     res.end(result);
 });
 
-app.use(express.static('./'));
+app.use(express.static(appPath));
 
 app.listen(8000);

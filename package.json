@@ -35,8 +35,8 @@
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
-    "start": "node server.js",
-    "backend": "node server.js",
+    "start": "node app/server.js",
+    "backend": "node app/server.js",
     "pretest": "npm install",
     "test": "./node_modules/.bin/karma start karma.conf.js",
     "test:single": "./node_modules/.bin/karma start karma.conf.js --single-run",
